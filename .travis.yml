@@ -1,5 +1,13 @@
----
 language: ruby
 notifications:
   webhooks: http://pulse.pivotallabs.com/projects/8c898a43-06e2-43d8-8648-e53b649dcec7/status
-
+deploy:
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: gvanhove@pivotal.io
+  password:
+    secure: GBDbuWS7x1BVbQuzW0w9tnzIUGmGpXqywcvPBcj7mpaZZ32v5OjyUAAfh76LoAh+XXdVrRttbrlFFDN4ZGr31haOOhRBYhzYjPb/2O95lqP+6jui87y8HYYnEHDagTMysjOzfIddXe1A3HC8+ZjIakRQ4WF6DDblOMHPfsMYb0ZFKOUPuvl7ON+WTcaxJqveoJQ4k3r18+OwFFXjZnSsmrmnRDCvus0fmO1IOveogHTuHXiDfElRHocwZnEU1BCRM2V43GvJqDHYNQPDTa7contxWaxOVoXNRBOXcnk3C5wHMhnYzxLwCOzDqBsrjWKhC7ZAmpR5R5RVVZgdnyI2YxWBLiO0JvcNdFpX90yFKhgEXs9ZVMXBIQO9uJcmiiJwOkPa1nDvqxs7V7Ztyou2FFv8MhnjE0WaLrRNN93xymSts089GogyFU2BKlOWADPP6+Yc309ETguzND7qQYhY2KwyP8f6Wmc+1oMMj6IzkIwthziYEwwgikuY4WHLaDiEcPWfEQ/mY+Z45vtPrcNbi6yBop5U4QRtO4G7zfWbp/J4XJV9qzEx+hdXELMt8QStTg2ShwlwUA8TRGrWSFk1fp1uP9PPELN0B5duy1SR5vQ4QKau53/mBpkdvb2Gxxdno1AcPFHyI3wzkaHrNp9JO4V+GfMoETBRprDNGMOHDnQ=
+  organization: slackersoft
+  space: project-william
+  on:
+    repo: pivotal-mojo/william

@@ -1,0 +1,9 @@
+---
+buildpack: ruby
+services:
+  - database
+applications:
+  - name: william
+    memory: 512M
+    host: vm-tester
+
