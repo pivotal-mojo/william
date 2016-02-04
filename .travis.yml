@@ -14,4 +14,4 @@ deploy:
   space: project-william
   on:
     repo: pivotal-mojo/william
-after_deploy: curl -H "X-TrackerToken: $TRACKER_TOKEN" -X PUT http://www.pivotaltracker.com/services/v3/projects/1529909/stories/deliver_all_finished -d ""
+after_deploy: deliver_stories.sh
