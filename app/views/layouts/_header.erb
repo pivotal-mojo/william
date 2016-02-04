@@ -1,0 +1,5 @@
+<header>
+  <% if user_signed_in? %>
+      <div class="user">Hi <%= current_user.email %>! <%= link_to "logout", destroy_user_session_path, method: :delete %></div>
+  <% end %>
+</header>
