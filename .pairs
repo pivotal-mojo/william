@@ -1,0 +1,13 @@
+# This file is managed by sprout
+
+pairs:
+  gv: Gregg Van Hove; gvanhove
+  nd: Noah Denton; ndenton
+  sm: Steven McAlpine; smcalpine
+  ph: Paymaun Heidari; pheidari
+
+email:
+  prefix: pair
+  domain: pivotal.io
+
+global: true
