@@ -6,4 +6,5 @@ applications:
   - name: william
     memory: 512M
     host: vm-tester
+    command: bundle exec rake db:migrate && bundle exec puma -p $PORT
 
