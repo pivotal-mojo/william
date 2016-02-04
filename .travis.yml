@@ -2,6 +2,7 @@ language: ruby
 notifications:
   webhooks: http://pulse.pivotallabs.com/projects/8c898a43-06e2-43d8-8648-e53b649dcec7/status
 deploy:
+  edge: true
   provider: cloudfoundry
   api: https://api.run.pivotal.io
   username: gvanhove@pivotal.io

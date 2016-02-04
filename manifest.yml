@@ -1,5 +1,5 @@
 ---
-buildpack: ruby
+buildpack: ruby_buildpack
 services:
   - database
 applications:
