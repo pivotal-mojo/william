@@ -5,3 +5,11 @@
   The following resource elements are approved and funded for <%= @project.name %>;
   if you are out of or need to request more resources, please contact your support team for assistance.
 </h5>
+
+<ul>
+  <li>CPUs remaining: <%= @project.cpu_cap %></li>
+  <li>Memory remaining: <%= @project.memory_cap %></li>
+  <li>Storage remaining: <%= @project.storage_cap %></li>
+  <li>Linux licenses remaining: <%= @project.linux_os_cap %></li>
+  <li>Windows licenses remaining: <%= @project.windows_os_cap %></li>
+</ul>
