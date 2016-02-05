@@ -20,6 +20,19 @@ body {
     font-family: "Verdana";
 }
 
-.content {
+.content, .notice, .alert {
     padding: 0 10px;
+}
+
+.notice {
+    background-color: #FFC65A;
+    height: 50px;
+    line-height: 50px;
+}
+
+.alert {
+    background-color: #D1675A;
+    color: #FFFFFF;
+    height: 50px;
+    line-height: 50px;
 }

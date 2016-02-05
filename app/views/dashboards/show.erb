@@ -1,1 +1,9 @@
-<h2>This is the dashboard for <%= current_user.group.name %> group</h2>
+<h2>
+  The following projects are approved and funded for <%= current_user.group.name %>; select a project to proceed.
+  If the project you seek is not present, please contact your support team for assistance.
+</h2>
+<ul class="project-list">
+  <% current_user.group.projects.each do |project| %>
+    <li><%= project.name %></li>
+  <% end %>
+</ul>
