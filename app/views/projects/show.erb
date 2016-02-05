@@ -7,9 +7,30 @@
 </h5>
 
 <ul>
-  <li>CPUs remaining: <%= @project.cpu_cap %></li>
-  <li>Memory remaining: <%= @project.memory_cap %></li>
-  <li>Storage remaining: <%= @project.storage_cap %></li>
-  <li>Linux licenses remaining: <%= @project.linux_os_cap %></li>
-  <li>Windows licenses remaining: <%= @project.windows_os_cap %></li>
+  <li>CPUs remaining: <%= @project.cpus_remaining %></li>
+  <li>Memory remaining: <%= @project.memory_remaining %>MB</li>
+  <li>Storage remaining: <%= @project.storage_remaining %>GB</li>
+  <li>Linux licenses remaining: <%= @project.linux_os_remaining %></li>
+  <li>Windows licenses remaining: <%= @project.windows_os_remaining %></li>
 </ul>
+
+<%= form_for [@project, @project.vms.build], html: {class: 'vm_form'} do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :cpus, 'CPUs' %>
+      <%= f.text_field :cpus, type: :number, max: @project.cpus_remaining %>
+    </div>
+    <div>
+      <%= f.label :memory %>
+      <span><%= f.text_field :memory, type: :number, max: @project.memory_remaining %>MB</span>
+      <%= f.label :storage %>
+      <span><%= f.text_field :storage, type: :number, max: @project.storage_remaining %>GB</span>
+    </div>
+    <div>
+      <%= f.label :operating_system, 'OS' %>
+      <span><%= f.select :operating_system, @project.available_operating_systems %></span>
+
+    </div>
+    <%= f.submit %>
+<% end %>

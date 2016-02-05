@@ -14,5 +14,6 @@ gem 'devise'
 
 group :development, :test do
   gem 'pry'
+  gem 'rspec-rails'
 end
 
