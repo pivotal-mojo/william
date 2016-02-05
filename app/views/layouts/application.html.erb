@@ -11,10 +11,10 @@
 <%= render partial: 'layouts/header' %>
 
 <% if notice %>
-    <div class="notice"><%= notice %></div>
+    <div class="notice"><%= notice.html_safe %></div>
 <% end %>
 <% if alert %>
-    <div class="alert"><%= alert %></div>
+    <div class="alert"><%= alert.html_safe %></div>
 <% end %>
 
 <div class="content">

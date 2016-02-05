@@ -14,18 +14,18 @@
   <li>Windows licenses remaining: <%= @project.windows_os_remaining %></li>
 </ul>
 
-<%= form_for [@project, @project.vms.build], html: {class: 'vm_form'} do |f| %>
+<%= form_for [@project, @vm], html: {class: 'vm_form'} do |f| %>
     <div>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, required: true %>
       <%= f.label :cpus, 'CPUs' %>
-      <%= f.text_field :cpus, type: :number, max: @project.cpus_remaining %>
+      <%= f.text_field :cpus, type: :number, max: @project.cpus_remaining, required: true %>
     </div>
     <div>
       <%= f.label :memory %>
-      <span><%= f.text_field :memory, type: :number, max: @project.memory_remaining %>MB</span>
+      <span><%= f.text_field :memory, type: :number, max: @project.memory_remaining, required: true %>MB</span>
       <%= f.label :storage %>
-      <span><%= f.text_field :storage, type: :number, max: @project.storage_remaining %>GB</span>
+      <span><%= f.text_field :storage, type: :number, max: @project.storage_remaining, required: true %>GB</span>
     </div>
     <div>
       <%= f.label :operating_system, 'OS' %>
