@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resource :dashboard, only: [:show]
+  resources :projects, only: [:index, :show]
 
-  root to: "dashboards#show"
+  root to: "projects#index"
 end
