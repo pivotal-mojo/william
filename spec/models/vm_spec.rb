@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe Vm do
   def create_project_with_defaults(overrides={})
-    Project.new({cpu_cap: 1, memory_cap: 1, storage_cap: 1, linux_os_cap: 1, windows_os_cap: 1}.merge(overrides))
+    double(:project, {cpus_remaining: 1, memory_remaining: 1, storage_remaining: 1, linux_os_remaining: 1, windows_os_remaining: 1}.merge(overrides))
   end
 
   def create_vm_with_defaults(project, overrides={})
-    project.vms.build({name: 'Nothing really matters', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux'}.merge(overrides))
+    vm = Vm.new({name: 'Nothing really matters', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux'}.merge(overrides))
+    allow(vm).to receive(:project) { project }
+    vm
   end
 
   it 'validates when requested resources are equal to that available for project for linux' do
@@ -72,7 +74,7 @@ describe Vm do
   end
 
   it 'requires cpu to be within available for project' do
-    project = create_project_with_defaults(cpu_cap:4)
+    project = create_project_with_defaults(cpu_remaining:4)
     vm = create_vm_with_defaults(project, cpus: 5)
 
     expect(vm).not_to be_valid
@@ -80,7 +82,7 @@ describe Vm do
   end
 
   it 'requires memory to be within available for project' do
-    project = create_project_with_defaults(memory_cap: 3)
+    project = create_project_with_defaults(memory_remaining: 3)
     vm = create_vm_with_defaults(project, memory: 4)
 
     expect(vm).not_to be_valid
@@ -88,7 +90,7 @@ describe Vm do
   end
 
   it 'requires storage to be within available for project' do
-    project = create_project_with_defaults(storage_cap: 3)
+    project = create_project_with_defaults(storage_remaining: 3)
     vm = create_vm_with_defaults(project, storage: 4)
 
     expect(vm).not_to be_valid
@@ -96,7 +98,7 @@ describe Vm do
   end
 
   it 'requires Linux VM to have available license' do
-    project = create_project_with_defaults(linux_os_cap: 0)
+    project = create_project_with_defaults(linux_os_remaining: 0)
     vm = create_vm_with_defaults(project, operating_system: 'Linux')
 
     expect(vm).not_to be_valid
@@ -104,7 +106,7 @@ describe Vm do
   end
 
   it 'requires Windows VM to have available license' do
-    project = create_project_with_defaults(windows_os_cap: 0)
+    project = create_project_with_defaults(windows_os_remaining: 0)
     vm = create_vm_with_defaults(project, operating_system: 'Windows')
 
     expect(vm).not_to be_valid

@@ -3,23 +3,23 @@ class Project < ActiveRecord::Base
   has_many :vms
 
   def cpus_remaining
-    cpu_cap
+    cpu_cap - vms.sum(:cpus)
   end
 
   def memory_remaining
-    memory_cap
+    memory_cap - vms.sum(:memory)
   end
 
   def storage_remaining
-    storage_cap
+    storage_cap - vms.sum(:storage)
   end
 
   def linux_os_remaining
-    linux_os_cap
+    linux_os_cap - vms.where(operating_system: 'Linux').count
   end
 
   def windows_os_remaining
-    windows_os_cap
+    windows_os_cap - vms.where(operating_system: 'Windows').count
   end
 
   def available_operating_systems
