@@ -5,11 +5,12 @@ services:
   - redis
 applications:
   - name: william
-    memory: 512M
+    memory: 256M
     host: vm-tester
     command: bundle exec rake db:migrate && bundle exec puma -p $PORT
   - name: william-worker
-    memory: 512M
+    memory: 256M
     no-route: true
+    command: bundle exec sidekiq -c 5
 
 
