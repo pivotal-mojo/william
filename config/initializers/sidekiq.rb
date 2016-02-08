@@ -4,6 +4,13 @@ if ENV['VCAP_SERVICES']
     service_config['name'] == 'redis'
   end
   credentials = redis_config['credentials']
-  redis_url = "redis://:#{credentials['password']}@#{credentials['host']}:#{credentials['port']}/0"
-  Sidekiq.redis = { url: redis_url, namespace: 'sidekiq' }
+  redis_url = "redis://:#{credentials['password']}@#{credentials['hostname']}:#{credentials['port']}/0"
+
+  Sidekiq.configure_server do |config|
+    config.redis = { url: redis_url }
+  end
+
+  Sidekiq.configure_client do |config|
+    config.redis = { url: redis_url }
+  end
 end
