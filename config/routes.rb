@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   end
   resources :vms, only: [:index]
 
+  resources :reset, only: [:index, :create]
+
   root to: "projects#index"
 end
