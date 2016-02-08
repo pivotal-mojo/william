@@ -1,0 +1,39 @@
+<nav>
+  <%= link_to "home", root_path %>
+</nav>
+<h2>VMs for <%= current_user.group.name %></h2>
+
+<% @projects.each do |project| %>
+    <div class="project-vms">
+      <h3>VMs for <%= project.name %></h3>
+
+      <% if project.vms.count == 0 %>
+          No vms created
+      <% else %>
+          <table class="vms">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>CPUs</th>
+              <th>Memory(MB)</th>
+              <th>Storage(GB)</th>
+              <th>Operating System</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% project.vms.each do |vm| %>
+                <tr>
+                  <td><%= vm.name %></td>
+                  <td><%= vm.cpus %></td>
+                  <td><%= vm.memory %></td>
+                  <td><%= vm.storage %></td>
+                  <td><%= vm.operating_system %></td>
+                  <td>Provisioning</td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+      <% end %>
+    </div>
+<% end %>

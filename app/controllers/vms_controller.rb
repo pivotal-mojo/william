@@ -6,12 +6,16 @@ class VmsController < ApplicationController
       flash[:vm] = vm_request
       redirect_to project and return
     end
-    redirect_to root_path
+    redirect_to vms_path, notice: 'VM request successful'
+  end
+
+  def index
+    @projects = current_user.projects.includes(:vms)
   end
 
   private
 
   def project
-    current_user.projects.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
   end
 end
