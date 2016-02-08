@@ -11,9 +11,12 @@ gem 'jquery-rails'
 gem 'puma'
 gem 'rails_12factor'
 gem 'devise'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
+  gem 'foreman'
 end
 

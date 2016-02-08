@@ -6,6 +6,7 @@ class VmsController < ApplicationController
       flash[:vm] = vm_request
       redirect_to project and return
     end
+    ProvisioningJob.perform_later vm_request.id
     redirect_to vms_path, notice: 'VM request successful'
   end
 
