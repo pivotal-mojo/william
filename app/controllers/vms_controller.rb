@@ -1,11 +1,12 @@
 class VmsController < ApplicationController
   def create
-    vm_request = project.vms.create(params.require(:vm).permit(:name, :cpus, :memory, :storage, :operating_system))
+    vm_request = project.vms.build(params.require(:vm).permit(:name, :cpus, :memory, :storage, :operating_system))
     unless vm_request.valid?
       flash[:alert] = vm_request.errors.full_messages.join('<br/>')
       flash[:vm] = vm_request
       redirect_to project and return
     end
+    vm_request.save
     ProvisioningJob.perform_later vm_request.id
     redirect_to vms_path, notice: 'VM request successful'
   end
