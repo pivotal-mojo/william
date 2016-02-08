@@ -1,0 +1,10 @@
+<nav>
+  <%= link_to "home", root_path %>
+</nav>
+<h2>VMs for <%= current_user.group.name %></h2>
+
+<div class="projects-vm-list"></div>
+<script>
+  window.page = new GroupView({el: $('.projects-vm-list'), collection: new ProjectCollection(<%= @projects.to_json.html_safe %>)});
+  window.page.rerender();
+</script>

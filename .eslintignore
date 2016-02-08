@@ -1,0 +1,2 @@
+app/assets/javascripts/vendor/
+spec/javascripts/helpers/mock-ajax.js

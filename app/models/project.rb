@@ -28,4 +28,8 @@ class Project < ActiveRecord::Base
     available << 'Linux' if linux_os_remaining > 0
     available.sort
   end
+
+  def as_json(options={})
+    super(options).merge(vms: vms.as_json(options))
+  end
 end

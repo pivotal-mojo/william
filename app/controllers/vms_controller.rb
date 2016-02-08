@@ -1,4 +1,6 @@
 class VmsController < ApplicationController
+  respond_to :html, :json
+
   def create
     vm_request = project.vms.build(params.require(:vm).permit(:name, :cpus, :memory, :storage, :operating_system))
     unless vm_request.valid?
@@ -13,6 +15,7 @@ class VmsController < ApplicationController
 
   def index
     @projects = current_user.projects.includes(:vms)
+    respond_with @projects
   end
 
   private

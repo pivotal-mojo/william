@@ -5,4 +5,12 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-task :default => :spec
+task :default => [:spec, :eslint, 'jasmine:ci']
+
+task :eslint do
+  puts 'Running eslint against production code'
+  puts %x{node_modules/.bin/eslint app/assets/javascripts}
+  puts ''
+  puts 'Running eslint against javascript tests'
+  puts %x{node_modules/.bin/eslint -c .eslintrc.specs.json spec/javascripts}
+end

@@ -13,10 +13,12 @@ gem 'rails_12factor'
 gem 'devise'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+gem 'responders'
 
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'foreman'
+  gem 'jasmine'
 end
 

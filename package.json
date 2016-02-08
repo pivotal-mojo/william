@@ -1,0 +1,6 @@
+{
+  "name": "william",
+  "dependencies": {
+    "eslint": "^1.10.3"
+  }
+}
