@@ -1,12 +1,58 @@
 header {
-  background-color: #115DB8;
-  color: #FFFFFF;
-  height: 50px;
-  line-height: 50px;
-  text-align: right;
-  padding: 0 10px;
+  .account-info {
+    background-color: #115DB8;
+    color: #FFFFFF;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    padding: 0 10px;
 
-  a {
-    color: #CCCCCC;
+    a {
+      color: #CCCCCC;
+    }
+  }
+
+  nav{
+    background-color: #fff;
+    color: #1976d2;
+    line-height: 70px;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .william-header {
+      font-size: 26px;
+      float: left;
+      color: #4a90e2;
+
+      svg {
+        display: inline-block;
+        margin: 0 20px 0 50px;
+        width: 30px;
+        height: 30px;
+        float: left;
+        padding-top: 20px;
+
+        path {
+          fill: #4a90e2;
+        }
+      }
+    }
+
+    .nav-link {
+      float: right;
+      text-transform: uppercase;
+      color: #1976d2;
+      font-size: 14px;
+      margin: 0 30px;
+    }
+
+    a {
+      color: #a1abc6;
+      text-decoration: none;
+    }
   }
 }
