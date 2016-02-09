@@ -1,9 +1,9 @@
-.vms {
+.vms, .vms-report {
     border-collapse: collapse;
     width: 95%;
 }
 
-.vms th {
+.vms th, .vms-report th {
     text-align: left;
 }
 
@@ -14,4 +14,62 @@
 .project-vms {
     margin-left: 15px;
     padding-bottom: 20px;
+}
+
+.vms-report {
+    border-collapse: separate;
+}
+
+.vms-report td, .vms-report th {
+    padding: 2px;
+}
+
+.project-totals {
+    font-weight: bold;
+}
+
+.project-totals td:first-child {
+    padding-left: 20px;
+}
+
+.vm-resource-values td:first-child {
+    padding-left: 40px;
+}
+
+.vms-report .vm-name-label {
+    padding-left: 40px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.group-totals td {
+    color: #FFD47E;
+    font-weight: bold;
+    text-shadow:
+            1px 1px 0px #A0C1E1,
+            2px 2px 0px #6E9FCE,
+            3px 3px 0px #0B61B5;
+}
+
+.group-totals td:first-child {
+    font-size: larger;
+}
+
+.vms-report .no-data {
+    font-weight: normal;
+}
+
+.project-report-body:nth-child(odd) tr{
+    background-color: #A0C1E1;
+}
+.project-report-body:nth-child(odd) tr.project-totals {
+    background-color: #6E9FCE;
+}
+
+.project-report-body:nth-child(even) tr {
+    background-color: #FFE5B0;
+}
+
+.project-report-body:nth-child(even) tr.project-totals {
+    background-color: #FFD47E;
 }
