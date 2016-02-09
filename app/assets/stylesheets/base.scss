@@ -1,0 +1,23 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Verdana";
+  background-color: #f5f7fb;
+}
+
+
+.content, .notice, .alert {
+  padding: 0 10px;
+}
+
+.notice {
+  background-color: #FFC65A;
+  height: 50px;
+  line-height: 50px;
+}
+
+.alert {
+  background-color: #D1675A;
+  color: #FFFFFF;
+  line-height: 50px;
+}

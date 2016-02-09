@@ -29,6 +29,10 @@ class Project < ActiveRecord::Base
     available.sort
   end
 
+  def status
+    ['good', 'warning', 'low', 'empty'].sample
+  end
+
   def as_json(options={})
     super(options).merge(vms: vms.as_json(options))
   end
