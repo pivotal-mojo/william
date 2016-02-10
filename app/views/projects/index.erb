@@ -1,9 +1,3 @@
 <ul class="project-list">
-  <% current_user.group.projects.each do |project| %>
-    <li class="project-item">
-      <div class="group-name"><%= project.group.name %></div>
-      <%= link_to project.name, project, class: 'project-name' %>
-      <div class="funding-date"><%= project.created_at.strftime("%b %d, %Y") %></div>
-    </li>
-  <% end %>
+  <%= render partial: 'project', collection: current_user.group.projects %>
 </ul>
