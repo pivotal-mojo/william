@@ -1,16 +1,16 @@
-<header>
+<div class="header">
   <% if user_signed_in? %>
       <div class="account-info">
         <div class="user">Hi <%= current_user.email %>!
         <%= link_to "logout", destroy_user_session_path, method: :delete %></div>
       </div>
-      <nav>
+      <div class="nav">
         <div class="william-header">
           <%= render partial: 'layouts/header_icon' %>
           Project William
         </div>
         <span class="nav-link"><%= link_to_unless_current "my status", vms_path %></span>
         <span class="nav-link"><%= link_to_unless_current "my projects", root_path %></span>
-      </nav>
+      </div>
   <% end %>
-</header>
+</div>
