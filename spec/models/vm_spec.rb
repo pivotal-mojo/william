@@ -39,6 +39,11 @@ describe Vm do
 
     expect(vm).not_to be_valid
     expect(vm.errors).to have_key(:cpus)
+
+    vm = create_vm_with_defaults(project, cpus: 0)
+
+    expect(vm).not_to be_valid
+    expect(vm.errors).to have_key(:cpus)
   end
 
   it 'requires an amount of memory' do
@@ -47,11 +52,21 @@ describe Vm do
 
     expect(vm).not_to be_valid
     expect(vm.errors).to have_key(:memory)
+
+    vm = create_vm_with_defaults(project, memory: 0)
+
+    expect(vm).not_to be_valid
+    expect(vm.errors).to have_key(:memory)
   end
 
   it 'requires an amount of storage' do
     project = create_project_with_defaults
     vm = create_vm_with_defaults(project, storage: nil)
+
+    expect(vm).not_to be_valid
+    expect(vm.errors).to have_key(:storage)
+
+    vm = create_vm_with_defaults(project, storage: 0)
 
     expect(vm).not_to be_valid
     expect(vm.errors).to have_key(:storage)

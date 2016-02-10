@@ -16,18 +16,17 @@
       <%= f.label :name %>
       <%= f.text_field :name, required: true %>
       <%= f.label :cpus, 'CPUs' %>
-      <%= f.text_field :cpus, type: :number, max: @project.cpus_remaining, required: true %>
+      <%= f.text_field :cpus, type: :number, min: 1, max: @project.cpus_remaining, required: true %>
     </div>
     <div>
       <%= f.label :memory %>
-      <span><%= f.text_field :memory, type: :number, max: @project.memory_remaining, required: true %>MB</span>
+      <span><%= f.text_field :memory, type: :number, min: 1, max: @project.memory_remaining, required: true %>MB</span>
       <%= f.label :storage %>
-      <span><%= f.text_field :storage, type: :number, max: @project.storage_remaining, required: true %>GB</span>
+      <span><%= f.text_field :storage, type: :number, min: 1, max: @project.storage_remaining, required: true %>GB</span>
     </div>
     <div>
       <%= f.label :operating_system, 'OS' %>
       <span><%= f.select :operating_system, @project.available_operating_systems %></span>
-
     </div>
     <%= f.submit %>
 <% end %>
