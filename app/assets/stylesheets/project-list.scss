@@ -27,38 +27,6 @@
       font-size: 22px;
     }
 
-    .project-status {
-      position: absolute;
-      height: 18px;
-      width: 18px;
-      border-radius: 9px;
-      right: 15px;
-      top: 15px;
-
-      &.good {
-        background: #b8e986;
-        border: 1px solid #7ed321;
-      }
-
-      &.warning {
-        background: #ffea00;
-        border: 1px solid #ffd740;
-
-      }
-
-      &.low {
-        background: #f87807;
-        border: 1px solid #fa3800;
-
-      }
-
-      &.empty {
-        background: red;
-        border: 1px solid blue;
-
-      }
-    }
-
     .funding-date {
       position: absolute;
       bottom: 20px;
