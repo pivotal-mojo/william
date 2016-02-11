@@ -1,0 +1,8 @@
+<div class="status-circle-container <%= status_class(remaining, cap) %>">
+  <svg height="60" width="60">
+    <circle r="27" stroke="lightgrey" stroke-width="6" fill="white" transform="translate(30,30)"></circle>
+    <circle class="filler" r="27" stroke-width="6" fill="none" stroke-dasharray="<%= (remaining.to_f / cap.to_f) * 169.0 %>,200" transform="translate(30,30) rotate(270)"></circle>
+  </svg>
+  <label class="amount-remaining"><%= remaining.to_i %></label>
+  <label class="status-circle-title"><%= label_text %></label>
+</div>

@@ -2,4 +2,11 @@
   <div class="group-name"><%= project.group.name %></div>
   <%= link_to project.name, project, class: 'project-name' %>
   <div class="funding-date"><%= project.created_at.strftime("%b %d, %Y") %></div>
+  <div class = "status-circles">
+
+    <%= render partial: 'status_circle', locals: { remaining: project.cpus_remaining, cap: project.cpu_cap, label_text: 'CPUs'} %>
+    <%= render partial: 'status_circle', locals: { remaining: project.memory_remaining / 1024.0, cap: project.memory_cap / 1024.0, label_text: 'memory gb'} %>
+    <%= render partial: 'status_circle', locals: { remaining: project.storage_remaining, cap: project.storage_cap, label_text: 'storage gb'} %>
+
+  </div>
 </li>
