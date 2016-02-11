@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :show] do
     resources :vms, only: [:create]
+
+    collection do
+      get :out_of_funds
+    end
   end
   resources :vms, only: [:index]
 

@@ -2,6 +2,17 @@ class Project < ActiveRecord::Base
   belongs_to :group
   has_many :vms
 
+  def self.funds_remaining
+    joins('left outer join (SELECT project_id, sum(cpus) as used_cpus, sum(memory) as used_memory, sum(storage) as used_storage, count(id) as used_licenses FROM vms GROUP BY project_id) as in_use ON projects.id = in_use.project_id')
+        .where('used_memory IS NULL OR memory_cap > used_memory').where('used_cpus IS NULL OR cpu_cap > used_cpus').where('used_storage IS NULL OR storage_cap > used_storage').where('used_licenses IS NULL OR windows_os_cap + linux_os_cap > used_licenses')
+
+  end
+
+  def self.out_of_funds
+    joins('join (SELECT project_id, sum(cpus) as used_cpus, sum(memory) as used_memory, sum(storage) as used_storage, count(id) as used_licenses FROM vms GROUP BY project_id) as in_use ON projects.id = in_use.project_id')
+        .where('memory_cap <= used_memory OR cpu_cap <= used_cpus OR storage_cap <= used_storage OR (windows_os_cap + linux_os_cap <= used_licenses)')
+  end
+
   def cpus_remaining
     cpu_cap - vms.sum(:cpus)
   end

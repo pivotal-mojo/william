@@ -1,3 +1,4 @@
+<%= render partial: 'project_selector' %>
 <ul class="project-list">
-  <%= render partial: 'project', collection: current_user.group.projects %>
+  <%= render partial: 'project', collection: @projects %>
 </ul>

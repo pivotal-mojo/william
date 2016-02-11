@@ -1,0 +1,4 @@
+<div class="project-state-selector">
+  <%= link_to_unless_current '<span class="project-type">My projects</span>'.html_safe, root_path %>
+  <%= link_to_unless_current '<span class="project-type">Out of funds</span>'.html_safe, out_of_funds_projects_path %>
+</div>

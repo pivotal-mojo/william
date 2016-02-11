@@ -86,4 +86,45 @@ describe Project do
       end
     end
   end
+
+  describe 'finding projects based on funds remaining' do
+    let(:group) { Group.create! }
+    let!(:out_of_memory) { group.projects.create!(name: 'out of memory', cpu_cap: 100, memory_cap: 10, storage_cap: 100, windows_os_cap: 20, linux_os_cap: 20) }
+    let!(:out_of_cpus) { group.projects.create!(name: 'out of cpus', cpu_cap: 10, memory_cap: 100, storage_cap: 100, windows_os_cap: 20, linux_os_cap: 20) }
+    let!(:out_of_storage) { group.projects.create!(name: 'out of storage', cpu_cap: 100, memory_cap: 100, storage_cap: 10, windows_os_cap: 20, linux_os_cap: 20) }
+    let!(:out_of_windows) { group.projects.create!(name: 'out of windows', cpu_cap: 100, memory_cap: 100, storage_cap: 100, windows_os_cap: 1, linux_os_cap: 20) }
+    let!(:out_of_linux) { group.projects.create!(name: 'out of linux', cpu_cap: 100, memory_cap: 100, storage_cap: 100, windows_os_cap: 20, linux_os_cap: 1) }
+    let!(:out_of_oses) { group.projects.create!(name: 'out of oses', cpu_cap: 100, memory_cap: 100, storage_cap: 100, windows_os_cap: 1, linux_os_cap: 1) }
+    let!(:no_vms) { group.projects.create!(name: 'no vms', cpu_cap: 1, memory_cap: 1, storage_cap: 1, windows_os_cap: 1, linux_os_cap: 1) }
+
+    before do
+      out_of_memory.vms.create!(name: 'memory hog', cpus: 1, memory: 10, storage: 1, operating_system: 'Linux')
+      out_of_cpus.vms.create!(name: 'cpu hog', cpus: 10, memory: 1, storage: 1, operating_system: 'Linux')
+      out_of_storage.vms.create!(name: 'storage hog', cpus: 1, memory: 1, storage: 10, operating_system: 'Linux')
+      out_of_windows.vms.create!(name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
+      out_of_linux.vms.create!(name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
+      out_of_oses.vms.create!(name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
+      out_of_oses.vms.create!(name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
+    end
+
+    it '.out_of_funds contains only projects that are out of a required resource' do
+      expect(group.projects.out_of_funds).to include(out_of_memory)
+      expect(group.projects.out_of_funds).to include(out_of_cpus)
+      expect(group.projects.out_of_funds).to include(out_of_storage)
+      expect(group.projects.out_of_funds).to include(out_of_oses)
+      expect(group.projects.out_of_funds).not_to include(out_of_windows)
+      expect(group.projects.out_of_funds).not_to include(out_of_linux)
+      expect(group.projects.out_of_funds).not_to include(no_vms)
+    end
+
+    it '.funds_remaining contains only projects that still have required resources' do
+      expect(group.projects.funds_remaining).not_to include(out_of_memory)
+      expect(group.projects.funds_remaining).not_to include(out_of_cpus)
+      expect(group.projects.funds_remaining).not_to include(out_of_storage)
+      expect(group.projects.funds_remaining).not_to include(out_of_oses)
+      expect(group.projects.funds_remaining).to include(out_of_windows)
+      expect(group.projects.funds_remaining).to include(out_of_linux)
+      expect(group.projects.funds_remaining).to include(no_vms)
+    end
+  end
 end

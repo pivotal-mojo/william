@@ -46,3 +46,37 @@
     }
   }
 }
+
+.project-state-selector {
+  height: 60px;
+  line-height: 60px;
+  background-color: #eff0f3;
+  color: #5d6884;
+  font-size: 14px;
+  margin: 0 -10px;
+
+  a {
+    color: #a1abc6;
+  }
+
+  .project-type {
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    margin: 0 50px;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 5px;
+      background: #63a8ec;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  a .project-type:after {
+    display: none;
+  }
+}
