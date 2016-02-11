@@ -1,9 +1,11 @@
+@import 'sizes';
+
 .header {
   .account-info {
     background-color: #115DB8;
     color: #FFFFFF;
-    height: 50px;
-    line-height: 50px;
+    height: $accountInfoHeight;
+    line-height: $accountInfoHeight;
     text-align: right;
     padding: 0 10px;
 
@@ -15,7 +17,7 @@
   .nav{
     background-color: #fff;
     color: #1976d2;
-    line-height: 70px;
+    line-height: $navHeight;
 
     &:after {
       content: '';

@@ -1,9 +1,16 @@
+@import 'sizes';
+
+html {
+  height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue", "Helvetica";
   font-weight: 400;
   background-color: #f5f7fb;
+  height: 100%;
 }
 
 * {
@@ -24,4 +31,8 @@ body {
   background-color: #D1675A;
   color: #FFFFFF;
   line-height: 50px;
+}
+
+.content {
+  height: calc(100% - #{$headerHeight});
 }
