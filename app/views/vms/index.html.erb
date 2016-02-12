@@ -1,7 +1,19 @@
-<h2>VMs for <%= current_user.group.name %></h2>
-
-<div class="projects-vm-list"></div>
+<div class="flex-master">
+  <div class="group-picker card">
+    <h3>My VMs</h3>
+    <ul>
+      <li class="current">VMs for Alpha</li>
+      <li>VMs for Beta</li>
+      <li>VMs for Cappa</li>
+      <li>VMs for Gamma</li>
+    </ul>
+  </div>
+  <div class="projects-vm-list"></div>
+</div>
 <script>
-  window.page = new GroupView({el: $('.projects-vm-list'), collection: new ProjectCollection(<%= @projects.to_json.html_safe %>)});
+  window.page = new GroupView({
+    el: $('.projects-vm-list'),
+    collection: new ProjectCollection(<%= @projects.to_json.html_safe %>)
+  });
   window.page.rerender();
 </script>
