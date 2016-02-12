@@ -1,3 +1,3 @@
 window.ProjectCollection = Backbone.Collection.extend({
-  url: '/vms'
+  url: '/vms.json'
 });

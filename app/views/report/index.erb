@@ -1,55 +1,47 @@
-<h2>Total Inventory Report</h2>
-<% @all_groups.each do |group| %>
-    <table class="vms-report">
-      <thead>
-      <tr>
-        <th></th>
-        <th>CPUs</th>
-        <th>Memory(MB)</th>
-        <th>Storage(GB)</th>
-        <th>Linux Licenses</th>
-        <th>Windows Licenses</th>
-      </tr>
-      </thead>
-      <tbody class="">
-      <tr class="group-totals">
-        <td>Roll-up of group: <%= group.name %></td>
-        <td><%= group.vms.sum(:cpus)%></td>
-        <td><%= group.vms.sum(:memory)%></td>
-        <td><%= group.vms.sum(:storage)%></td>
-        <td><%= group.vms.where(operating_system: 'Linux').count%></td>
-        <td><%= group.vms.where(operating_system: 'Windows').count%></td>
-      </tr>
-      </tbody>
-    <% group.projects.each do |project| %>
-      <tbody class="project-report-body">
-      <tr class="project-totals">
-        <td>Roll-up of project: <%= project.name %></td>
-        <td><%= project.vms.sum(:cpus)%></td>
-        <td><%= project.vms.sum(:memory)%></td>
-        <td><%= project.vms.sum(:storage)%></td>
-        <td><%= project.vms.where(operating_system: 'Linux').count%></td>
-        <td><%= project.vms.where(operating_system: 'Windows').count%></td>
-      </tr>
+<div class="flex-master">
+  <div class="projects-vm-list">
+    <% @all_groups.each do |group| %>
+        <div class="project-vms card">
+          <table class="condensed">
+            <thead>
+            <tr>
+              <th class="vm-name">Name</th>
+              <th class="cpu-count">CPUs</th>
+              <th class="memory-amount">Memory(MB)</th>
+              <th class="storage-amount">Storage(GB)</th>
+              <th class="operating-system">OS Licenses</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="group-totals rollup">
+              <td>Group <%= group.name %></td>
+              <td><%= group.vms.sum(:cpus) %></td>
+              <td><%= group.vms.sum(:memory) %></td>
+              <td><%= group.vms.sum(:storage) %></td>
+              <td><%= group.vms.count %></td>
+            </tr>
 
-          <tr>
-            <% if project.vms.count > 0 %>
-              <td colspan="6" class="vm-name-label">VM Name</td>
-            <% else %> 
-              <td colspan="6" class="vm-name-label no-data">No resources allocated</td>
+            <% group.projects.each do |project| %>
+                <tr class="project-totals rollup">
+                  <td>Project <%= project.name %></td>
+                  <td><%= project.vms.sum(:cpus) %></td>
+                  <td><%= project.vms.sum(:memory) %></td>
+                  <td><%= project.vms.sum(:storage) %></td>
+                  <td><%= project.vms.count %></td>
+                </tr>
+
+                <% project.vms.each do |vm| %>
+                    <tr class="diminished">
+                      <td><%= vm.name %></td>
+                      <td><%= vm.cpus %></td>
+                      <td><%= vm.memory %></td>
+                      <td><%= vm.storage %></td>
+                      <td>1</td>
+                    </tr>
+                <% end %>
             <% end %>
-          </tr>
-          <% project.vms.each do |vm| %>
-              <tr class="vm-resource-values">
-                <td><%= vm.name %></td>
-                <td><%= vm.cpus %></td>
-                <td><%= vm.memory %></td>
-                <td><%= vm.storage %></td>
-                <td><%= vm.operating_system == 'Linux' ? "\u2713".encode('utf-8') : '' %></td>
-                <td><%= vm.operating_system == 'Windows' ? "\u2713".encode('utf-8') : '' %></td>
-              </tr>
-          <% end %>
-      </tbody>
-        <% end %>
-    </table>
-<% end %>
+            </table>
+        </div>
+    <% end %>
+  </div>
+</div>

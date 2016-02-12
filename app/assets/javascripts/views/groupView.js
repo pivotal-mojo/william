@@ -13,7 +13,7 @@ window.GroupView = Backbone.View.extend({
         '<% if (project.vms.length === 0) { %>' +
         '<div class="empty">No vms created</div>' +
         '<% } else { %>' +
-        '<table class="vms">' +
+        '<table class="zebra-stripe">' +
         '<thead>' +
         '<tr>' +
         '<th class="vm-name">Name</th>' +

@@ -58,7 +58,7 @@
     }
   }
 
-  .vms {
+  table {
     border-collapse: collapse;
     width: 100%;
 
@@ -74,6 +74,10 @@
       padding-left: 45px;
     }
 
+    tr{
+      border-bottom: solid 1px #e2e7ec;
+    }
+
     td {
       height: 60px;
       font-size: 14px;
@@ -81,8 +85,31 @@
       padding: 0 15px;
     }
 
-    tr:nth-child(odd) td {
+    &.condensed {
+      td {
+        height: 40px;
+        font-size: 12px;
+      }
+
+      .rollup td{
+        font-size: 14px;
+      }
+    }
+
+
+    &.zebra-stripe {
+      tr:nth-child(odd) td {
+        background-color: #f5f7fb;
+      }
+    }
+
+    .project-totals td{
+      font-weight: 500;
+    }
+
+    .group-totals td {
       background-color: #f5f7fb;
+      font-weight: 700;
     }
 
     .vm-name {
