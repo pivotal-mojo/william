@@ -1,0 +1,10 @@
+<svg height="<%= width %>" width="<%= width %>">
+  <%
+    stroke_width = 6
+    radius = (width - stroke_width) / 2
+    fill_value = (remaining.to_f / cap.to_f) * 2 * radius * 3.14
+    center = width / 2
+  %>
+  <circle r="<%= radius %>" stroke="lightgrey" stroke-width="<%= stroke_width %>" fill="white" transform="translate(<%= center %>,<%= center %>)"></circle>
+  <circle class="filler" r="<%= radius %>" stroke-width="<%= stroke_width %>" fill="none" stroke-dasharray="<%= fill_value %>,200" transform="translate(<%= center %>,<%= center %>) rotate(270)"></circle>
+</svg>

@@ -1,0 +1,102 @@
+$full-color: #aeea00;
+$warning-color: #fdd835;
+$critical-color: #f88a03;
+$empty-color: #e1e3e9;
+
+.status-circles {
+  padding-top: 8px;
+}
+
+.status-circle-container {
+  position: relative;
+  text-align: center;
+
+  svg {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .amount-remaining {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .status-circle-title {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    font-size: 10px;
+    color: $empty-color;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &.full {
+    svg circle.filler {
+      stroke: $full-color;
+    }
+    .amount-remaining {
+      color: $full-color;
+    }
+  }
+
+  &.warning {
+    svg circle.filler {
+      stroke: $warning-color;
+    }
+    .amount-remaining {
+      color: $warning-color;
+    }
+  }
+
+  &.critical {
+    svg circle.filler {
+      stroke: $critical-color;
+    }
+    .amount-remaining {
+      color: $critical-color;
+    }
+  }
+
+  &.empty {
+    svg circle.filler {
+      stroke: $empty-color;
+    }
+    .amount-remaining {
+      color: $empty-color;
+    }
+  }
+}
+
+.project-item .status-circle-container {
+  float: left;
+  width: 33%;
+}
+
+.status-bar {
+  background-color: $empty-color;
+  height: 5px;
+
+  .partial_bar {
+    height: 5px;
+
+    &.full {
+      background-color: $full-color;
+    }
+
+    &.warning {
+      background-color: $warning-color;
+    }
+
+    &.critical {
+      background-color: $critical-color;
+    }
+
+    &.empty {
+      background-color: $empty-color;
+    }
+  }
+}

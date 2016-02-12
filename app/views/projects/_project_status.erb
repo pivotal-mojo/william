@@ -1,9 +1,58 @@
 <div class="tall card project-status">
-  <ul>
-    <li>CPUs remaining: <%= project.cpus_remaining %></li>
-    <li>Memory remaining: <%= project.memory_remaining %>MB</li>
-    <li>Storage remaining: <%= project.storage_remaining %>GB</li>
-    <li>Linux licenses remaining: <%= project.linux_os_remaining %></li>
-    <li>Windows licenses remaining: <%= project.windows_os_remaining %></li>
-  </ul>
+  <div>
+    <h5>VMs Availability</h5>
+    <h3 class="project-name"><%= project.name %></h3>
+  </div>
+  <div class="status-circle-container">
+    <%= render partial: 'status_circle_svg', locals: {remaining: 211, cap: 365, width: 130} %>
+    <div class="amount-remaining">
+      <div class="number">211</div>
+      <span>days remaining</span>
+    </div>
+  </div>
+  <div class="project-info created_at">
+    <div class="icon">
+      <%= render partial: 'date_svg' %>
+    </div>
+    <div class="value">
+      <label>created</label>
+      <%= project.created_at.strftime("%b %d, %Y") %>
+    </div>
+  </div>
+  <div class="project-info sdm-info">
+    <div class="icon">
+      <%= render partial: 'sdm_svg' %>
+    </div>
+    <div class="value">
+      <label>SDM</label>
+      John Smith
+      <br/>
+      jsmith@example.com
+    </div>
+  </div>
+  <div class="project-info billing-info">
+    <div class="icon">
+      <%= render partial: 'billing_svg' %>
+    </div>
+    <div class="value">
+      <label>Billing Dept</label>
+      xx-yy-1234
+    </div>
+  </div>
+  <div class="resource-status">
+    <%= render partial: 'status_bar', locals: {remaining: project.cpus_remaining, cap: project.cpu_cap} %>
+    CPUs
+  </div>
+  <div class="resource-status">
+    <%= render partial: 'status_bar', locals: {remaining: project.memory_remaining / 1024, cap: project.memory_cap / 1024} %>
+    Memory
+  </div>
+  <div class="resource-status">
+    <%= render partial: 'status_bar', locals: {remaining: project.storage_remaining, cap: project.storage_cap} %>
+    Storage
+  </div>
+  <div class="resource-status">
+    <%= render partial: 'status_bar', locals: {remaining: project.linux_os_remaining + project.windows_os_remaining, cap: project.linux_os_cap + project.windows_os_cap} %>
+    Licenses
+  </div>
 </div>

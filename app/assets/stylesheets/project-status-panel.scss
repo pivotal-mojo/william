@@ -1,6 +1,83 @@
 .project-status {
-  width: 325px;
-  margin-right: 30px;
-  flex-grow: 0;
-  flex-shrink: 0
+  color: #b5bcd1;
+
+  &.card {
+    padding: 0 30px;
+  }
+
+  h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0;
+    padding-top: 30px;
+  }
+
+  h3 {
+    font-size: 22px;
+    color: #0077c2;
+    margin: 0 0 30px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #e7e7e8;
+  }
+
+  .status-circle-container {
+    margin-bottom: 30px;
+
+    svg circle.filler {
+      stroke: #4a90e2;
+    }
+
+    .amount-remaining {
+      color: #838fab;
+
+      .number {
+        font-size: 50px;
+        line-height: 40px;
+      }
+
+      span {
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .resource-status {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #838fab;
+
+    .status-bar {
+      margin-bottom: 5px;
+    }
+  }
+
+  .project-info {
+    line-height: 20px;
+    font-size: 14px;
+    margin-bottom: 15px;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      margin-right: 20px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .value {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    label {
+      text-transform: uppercase;
+      font-weight: 500;
+
+      &:after {
+        content: ':'
+      }
+    }
+  }
 }
