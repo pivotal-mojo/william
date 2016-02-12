@@ -40,6 +40,45 @@ class Project < ActiveRecord::Base
     available.sort
   end
 
+  def select_responsible_manager
+    available = ['Joe Bobson', 'Mary Maryam', 'Guy Man']
+    available.sort
+  end
+
+  def select_primary_contact
+    available = ['Primary Person 1', 'Primary Person 2', 'That Man', 'Mr. Smith']
+    available.sort
+  end
+
+  def select_cag
+    available = ['CAG Bucket 1', 'CAG Bucket 2', 'CAG Bucket 3']
+    available.sort
+  end
+
+  def select_network
+    available = ['DHCP', 'Static IP', 'F5 Static IP']
+    available.sort
+  end
+
+  def select_server_role
+    available = ['Web Server', 'Application Server', 'Citrix', 'Exchange']
+    available.sort
+  end
+
+  def select_support
+    available = ['Support Vendor 1', 'Support Vendor 2']
+    available.sort
+  end
+
+  def select_backup_type
+    available = ['Backup Technology 1', 'Backup Technology 2']
+    available.sort
+  end
+
+  def select_yes_no
+    available = %w(Yes No)
+  end
+
   def as_json(options={})
     super(options).merge(vms: vms.as_json(options))
   end

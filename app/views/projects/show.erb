@@ -1,25 +1,80 @@
 <div class="flex-master">
-  <%= render partial: 'project_status', locals: { project: @project } %>
+  <%= render partial: 'project_status', locals: {project: @project} %>
 
-  <%= form_for [@project, @vm], html: {class: 'tall card vm-form'} do |f| %>
-      <div>
-        <%= f.label :name %>
+  <%= form_for [@project, @vm], html: {class: 'card vm-form'} do |f| %>
+      <div class="vm-fieldset long">
+        <%= f.label :name, 'Machine Name', required: true %>
         <%= f.text_field :name, required: true %>
-        <%= f.label :cpus, 'CPUs' %>
-        <%= f.text_field :cpus, type: :number, min: 1, max: @project.cpus_remaining, required: true %>
       </div>
-      <div>
-        <%= f.label :memory %>
-        <span><%= f.text_field :memory, type: :number, min: 1, max: @project.memory_remaining, required: true %>
-          MB</span>
-        <%= f.label :storage %>
-        <span><%= f.text_field :storage, type: :number, min: 1, max: @project.storage_remaining, required: true %>
-          GB</span>
+      <div class="vm-fieldset short">
+        <%= f.label :data_center, 'Data Center' %>
+        <%= f.text_field :data_center, required: true %>
       </div>
-      <div>
+      <div class="vm-fieldset short">
         <%= f.label :operating_system, 'OS' %>
         <span><%= f.select :operating_system, @project.available_operating_systems %></span>
       </div>
-      <%= f.submit %>
+
+      <div class="vm-fieldset fullwidth">
+        <%= f.label :description %>
+        <%= f.text_area :description, placeholder: 'Maximum character restriction will be indicated here' %>
+      </div>
+
+      <div class="vm-fieldset">
+        <%= f.label :cpus, 'CPUs' %>
+        <%= f.text_field :cpus, type: :number, min: 1, max: @project.cpus_remaining, required: true %>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :memory, 'Memory MB' %>
+        <%= f.text_field :memory, type: :number, min: 1, max: @project.memory_remaining, required: true %>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :storage, 'Storage GB' %>
+        <%= f.text_field :storage, type: :number, min: 1, max: @project.storage_remaining, required: true %>
+
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :responsible_manager %>
+        <span><%= f.select :responsible_manager, @project.select_responsible_manager, :include_blank => true %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :primary_contact %>
+        <span><%= f.select :primary_contact, @project.select_primary_contact, :include_blank => true %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :cag, 'CAG' %>
+        <span><%= f.select :cag, @project.select_cag, :include_blank => true %></span>
+      </div>
+
+      <div class="vm-fieldset">
+        <%= f.label :network_type %>
+        <span><%= f.select :network_type, @project.select_network, :include_blank => true %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :server_role %>
+        <span><%= f.select :server_role, @project.select_server_role, :include_blank => true %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :support %>
+        <span><%= f.select :support, @project.select_support, :include_blank => true %></span>
+      </div>
+
+      <div class="vm-fieldset">
+        <%= f.label :monitoring_enabled %>
+        <span><%= f.select :monitoring_enabled, @project.select_yes_no %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :backup_type %>
+        <span><%= f.select :backup_type, @project.select_backup_type, :include_blank => true %></span>
+      </div>
+      <div class="vm-fieldset">
+        <%= f.label :backup_encryption_enabled %>
+        <span><%= f.select :backup_encryption_enabled, @project.select_yes_no  %></span>
+      </div>
+      <div class="button-set">
+
+      <button class="button"><%= link_to 'cancel', root_path %></button>
+      <%= f.submit class: 'button solid', value:'submit' %>
+      </div>
   <% end %>
 </div>

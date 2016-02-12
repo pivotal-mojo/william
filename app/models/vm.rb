@@ -1,10 +1,20 @@
 class Vm < ActiveRecord::Base
   belongs_to :project
 
-  validates :name,    presence: true
+  validates :name,                presence: true
+  validates :data_center,         presence: true
+  validates :responsible_manager, presence: true
+  validates :primary_contact,     presence: true
+  validates :cag,                 presence: true
+  validates :network_type,        presence: true
+  validates :server_role,         presence: true
+  validates :support,             presence: true
+  validates :backup_type,         presence: true
+
   validates :cpus,    presence: true, :numericality => { :greater_than => 0 }
   validates :memory,  presence: true, :numericality => { :greater_than => 0 }
   validates :storage, presence: true, :numericality => { :greater_than => 0 }
+
   validates :operating_system, presence: true, inclusion: ['Windows', 'Linux']
 
   validate :cpus_under_cap

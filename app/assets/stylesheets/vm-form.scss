@@ -6,6 +6,16 @@
   box-sizing: border-box;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: column;
+}
+
 .project-status {
   width: 325px;
   margin-right: 30px;
@@ -13,12 +23,94 @@
   flex-shrink: 0
 }
 
-.vm-form {
+$field-text-color: #a1abc6;
+
+form.vm-form {
   flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 50px;
+
+  .vm-fieldset {
+    display: inline-block;
+    width: 32%;
+
+    &.short {
+      width: 28%;
+    }
+    &.long {
+      width: 40%;
+    }
+    &.fullwidth {
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: $field-text-color;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      height: 52px;
+      color: $field-text-color;
+      border-radius: 4px;
+      border: solid 1px #c6cfd9;
+      box-sizing: border-box;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 0 14px;
+    }
+
+    textarea {
+      height: 118px;
+      font-size: 14px;
+      padding: 14px;
+    }
+
+    select {
+      font-size: 18px;
+      background-color: #fff;
+    }
+  }
+
+  .button-set {
+    margin-left: auto;
+    margin-top: auto;
+
+    .button {
+      margin-left: 14px;
+      width: 138px;
+      height: 40px;
+      border-radius: 40px;
+      border: solid 2px #c6cfd9;
+      background-color: #fff;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      color: #a1abc6;
+
+      &.solid {
+        background-color: #4a90e2;
+        border: solid 2px #4a90e2;
+        color: #fff;
+      }
+
+      a {
+        text-decoration: none;
+        color: #a1abc6;
+      }
+    }
+  }
 }
 
 .card {
-  display: inline-block;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.19);

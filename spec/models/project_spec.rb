@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe Project do
+  def create_vm_with_defaults(project, overrides={})
+    vm = project.vms.create!({name: 'Nothing really matters', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux', data_center: 'DataCenter 1',
+                              description: '', responsible_manager:'Manager', primary_contact: 'Contact', cag: 'Assistance Group 1', network_type: 'DHCP', server_role:'Role 1', support:'Vendor 1',
+                              backup_type:'Backup Tool 1', monitoring_enabled:true, backup_encryption_enabled: true}.merge(overrides))
+    allow(vm).to receive(:project) { project }
+  end
+
   describe '#available_operating_systems' do
     it 'is windows and linux when both are available and no vms are provisioned' do
       project = Project.new(linux_os_cap: 1, windows_os_cap: 1)
@@ -30,7 +37,7 @@ describe Project do
     context 'with no vms for this project' do
       before do
         other_project = group.projects.create!(name: 'Other', cpu_cap: 2, memory_cap: 2, storage_cap: 2, linux_os_cap: 2, windows_os_cap: 2)
-        other_project.vms.create!(name: 'other vm', cpus: 2, memory: 2, storage: 2, operating_system: 'Linux')
+        create_vm_with_defaults(other_project, name: 'other vm', cpus: 2, memory: 2, storage: 2, operating_system: 'Linux')
       end
 
       it 'is the cap values' do
@@ -44,7 +51,7 @@ describe Project do
 
     context 'with a linux vm' do
       before do
-        project.vms.create!(name: 'something', cpus: 2, memory: 3, storage: 1, operating_system: 'Linux')
+        create_vm_with_defaults(project, name: 'something', cpus: 2, memory: 3, storage: 1, operating_system: 'Linux')
       end
 
       it 'reduces the remaining caps' do
@@ -58,7 +65,7 @@ describe Project do
 
     context 'with a windows vm' do
       before do
-        project.vms.create!(name: 'something', cpus: 2, memory: 3, storage: 1, operating_system: 'Windows')
+        create_vm_with_defaults(project, name: 'something', cpus: 2, memory: 3, storage: 1, operating_system: 'Windows')
       end
 
       it 'reduces the remaining caps' do
@@ -72,9 +79,9 @@ describe Project do
 
     context 'with multiple vms' do
       before do
-        project.vms.create!(name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Linux')
-        project.vms.create!(name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Linux')
-        project.vms.create!(name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Windows')
+        create_vm_with_defaults(project, name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Linux')
+        create_vm_with_defaults(project, name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Linux')
+        create_vm_with_defaults(project, name: 'something', cpus: 2, memory: 1, storage: 1, operating_system: 'Windows')
       end
 
       it 'reduces the remaining caps' do
@@ -98,13 +105,13 @@ describe Project do
     let!(:no_vms) { group.projects.create!(name: 'no vms', cpu_cap: 1, memory_cap: 1, storage_cap: 1, windows_os_cap: 1, linux_os_cap: 1) }
 
     before do
-      out_of_memory.vms.create!(name: 'memory hog', cpus: 1, memory: 10, storage: 1, operating_system: 'Linux')
-      out_of_cpus.vms.create!(name: 'cpu hog', cpus: 10, memory: 1, storage: 1, operating_system: 'Linux')
-      out_of_storage.vms.create!(name: 'storage hog', cpus: 1, memory: 1, storage: 10, operating_system: 'Linux')
-      out_of_windows.vms.create!(name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
-      out_of_linux.vms.create!(name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
-      out_of_oses.vms.create!(name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
-      out_of_oses.vms.create!(name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
+      create_vm_with_defaults(out_of_memory, name: 'memory hog', cpus: 1, memory: 10, storage: 1, operating_system: 'Linux')
+      create_vm_with_defaults(out_of_cpus, name: 'cpu hog', cpus: 10, memory: 1, storage: 1, operating_system: 'Linux')
+      create_vm_with_defaults(out_of_storage, name: 'storage hog', cpus: 1, memory: 1, storage: 10, operating_system: 'Linux')
+      create_vm_with_defaults(out_of_windows, name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
+      create_vm_with_defaults(out_of_linux, name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
+      create_vm_with_defaults(out_of_oses, name: 'windows hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Windows')
+      create_vm_with_defaults(out_of_oses, name: 'linux hog', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux')
     end
 
     it '.out_of_funds contains only projects that are out of a required resource' do
