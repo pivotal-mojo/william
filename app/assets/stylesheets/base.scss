@@ -25,12 +25,16 @@ body {
   background-color: #FFC65A;
   height: 50px;
   line-height: 50px;
+  z-index: 1;
+  position: relative;
 }
 
 .alert {
   background-color: #D1675A;
   color: #FFFFFF;
   line-height: 50px;
+  z-index: 1;
+  position: relative;
 }
 
 .content {
