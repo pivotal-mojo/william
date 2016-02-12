@@ -2,6 +2,10 @@
   <%= render partial: 'project_status', locals: {project: @project} %>
 
   <%= form_for [@project, @vm], html: {class: 'card vm-form'} do |f| %>
+      <div class="vm-fieldset fullwidth">
+        <h3>VM Request Form</h3>
+      </div>
+
       <div class="vm-fieldset long">
         <%= f.label :name, 'Machine Name', required: true %>
         <%= f.text_field :name, required: true %>

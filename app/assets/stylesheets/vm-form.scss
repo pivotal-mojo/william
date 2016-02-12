@@ -33,6 +33,12 @@ form.vm-form {
   justify-content: space-between;
   padding: 50px;
 
+  h3 {
+    margin-top: 0px;
+    font-size: 22px;
+    color: #0077c2;
+  }
+
   .vm-fieldset {
     display: inline-block;
     width: 32%;

@@ -6,7 +6,9 @@ describe Vm do
   end
 
   def create_vm_with_defaults(project, overrides={})
-    vm = Vm.new({name: 'Nothing really matters', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux'}.merge(overrides))
+    vm = Vm.new({name: 'Nothing really matters', cpus: 1, memory: 1, storage: 1, operating_system: 'Linux', data_center: 'DataCenter 1',
+                 description: '', responsible_manager:'Manager', primary_contact: 'Contact', cag: 'Assistance Group 1', network_type: 'DHCP', server_role:'Role 1', support:'Vendor 1',
+                 backup_type:'Backup Tool 1', monitoring_enabled:true, backup_encryption_enabled: true}.merge(overrides))
     allow(vm).to receive(:project) { project }
     vm
   end
