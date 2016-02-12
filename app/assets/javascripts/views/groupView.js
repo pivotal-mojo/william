@@ -8,20 +8,20 @@ window.GroupView = Backbone.View.extend({
   },
   template: function () {
     return '<% _.each(projects, function(project) { %>' +
-        '<div class="project-vms">' +
-        '<h3>VMs for <%= project.name %></h3>' +
+        '<div class="project-vms card">' +
+        '<h4>VMs for Project <%= project.name %></h4>' +
         '<% if (project.vms.length === 0) { %>' +
-        'No vms created' +
+        '<div class="empty">No vms created</div>' +
         '<% } else { %>' +
         '<table class="vms">' +
         '<thead>' +
         '<tr>' +
-        '<th>Name</th>' +
-        '<th>CPUs</th>' +
-        '<th>Memory(MB)</th>' +
-        '<th>Storage(GB)</th>' +
-        '<th>Operating System</th>' +
-        '<th>Status</th>' +
+        '<th class="vm-name">Name</th>' +
+        '<th class="cpu-count">CPUs</th>' +
+        '<th class="memory-amount">Memory (MB)</th>' +
+        '<th class="storage-amount">Storage (GB)</th>' +
+        '<th class="operating-system">Operating System</th>' +
+        '<th class="vm-status">Status</th>' +
         '</tr>' +
         '</thead>' +
         '<tbody>' +
@@ -47,8 +47,8 @@ window.GroupView = Backbone.View.extend({
     this.start();
   },
   start: function () {
-    setTimeout(_.bind(function () {
-      this.collection.fetch({reset: true});
-    }, this), 5000);
+    //setTimeout(_.bind(function () {
+    //  this.collection.fetch({reset: true});
+    //}, this), 5000);
   }
 });

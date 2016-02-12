@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>Memory</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Memory" sketch:type="MSArtboardGroup" fill="#B5BCD1">
+            <g id="sd-storage" sketch:type="MSLayerGroup" transform="translate(4.000000, 2.000000)">
+                <path d="M11.2,0 L4.8,0 L0,4.8 L0,14.4 C0,15.28 0.72,16 1.6,16 L11.2,16 C12.08,16 12.8,15.28 12.8,14.4 L12.8,1.6 C12.8,0.72 12.08,0 11.2,0 L11.2,0 Z M6.4,4.8 L4.8,4.8 L4.8,1.6 L6.4,1.6 L6.4,4.8 L6.4,4.8 Z M8.8,4.8 L7.2,4.8 L7.2,1.6 L8.8,1.6 L8.8,4.8 L8.8,4.8 Z M11.2,4.8 L9.6,4.8 L9.6,1.6 L11.2,1.6 L11.2,4.8 L11.2,4.8 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>
