@@ -47,8 +47,8 @@ window.GroupView = Backbone.View.extend({
     this.start();
   },
   start: function () {
-    //setTimeout(_.bind(function () {
-    //  this.collection.fetch({reset: true});
-    //}, this), 5000);
+    setTimeout(_.bind(function () {
+      this.collection.fetch({reset: true});
+    }, this), 5000);
   }
 });
