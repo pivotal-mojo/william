@@ -22,19 +22,22 @@ body {
 }
 
 .notice {
-  background-color: #FFC65A;
+  background-color: #26B99E;
   height: 50px;
   line-height: 50px;
   z-index: 1;
   position: relative;
+  padding-left: 50px;
+  color: #fff;
 }
 
 .alert {
-  background-color: #D1675A;
+  background-color: #f88a03;
   color: #FFFFFF;
   line-height: 50px;
   z-index: 1;
   position: relative;
+  padding-left: 50px;
 }
 
 .content {
