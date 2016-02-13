@@ -9,6 +9,7 @@
           <%= render partial: 'layouts/header_icon' %>
           Project William
         </div>
+        <span class="nav-link"><%= link_to_unless_current "reports", report_path %></span>
         <span class="nav-link"><%= link_to_unless_current "my status", vms_path %></span>
         <span class="nav-link"><%= link_to_unless_current "my projects", root_path %></span>
       </div>

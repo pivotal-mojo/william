@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :vms, only: [:index]
 
   resources :reset, only: [:index, :create]
-  resources :report, only: [:index]
+  resource :report, only: [:show]
 
   root to: "projects#index"
 end
