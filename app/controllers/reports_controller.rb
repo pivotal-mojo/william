@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html { render }
-      format.csv { render csv: generate_csv(@all_groups) }
+      format.csv { send_data generate_csv(@all_groups) }
     end
   end
 
