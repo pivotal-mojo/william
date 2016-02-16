@@ -41,5 +41,5 @@ body {
 }
 
 .content {
-  height: calc(100% - #{$headerHeight});
+  min-height: calc(100% - #{$headerHeight});
 }
