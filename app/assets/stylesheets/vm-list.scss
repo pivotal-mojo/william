@@ -84,6 +84,18 @@
       font-size: 14px;
       color: #838fab;
       padding: 0 15px;
+
+      &:first-child {
+        padding-left: 45px;
+      }
+    }
+
+    .group-totals td:first-child {
+      padding-left: 15px;
+    }
+
+    .project-totals td:first-child {
+      padding-left: 30px;
     }
 
     &.condensed {
